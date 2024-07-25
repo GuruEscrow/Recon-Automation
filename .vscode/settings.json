@@ -1,0 +1,4 @@
+{
+    "jdk.advanced.disable.nbjavac": true,
+    "java.compile.nullAnalysis.mode": "disabled"
+}
