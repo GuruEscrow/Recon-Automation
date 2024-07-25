@@ -72,7 +72,7 @@ public class ExcelUtility {
 	 */
 	public Map<String, String> readDataFromExcel(String sheetName) {
 
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<String, String>();
 		df = new DataFormatter();
 		Sheet sheet = workbook.getSheet(sheetName);
 
@@ -84,10 +84,10 @@ public class ExcelUtility {
 		}
 		return map;
 	}
-	
+
 	public int getLastRowNum(String sheetName) {
 		Sheet sheet = workbook.getSheet(sheetName);
-        
+
 		return sheet.getPhysicalNumberOfRows();
 	}
 
@@ -105,15 +105,15 @@ public class ExcelUtility {
 	 * @param excelpath
 	 */
 	public void writeToExcel(String sheetName, int rowNum, int cellNum, String value, String excelpath) {
-		Sheet sheet=workbook.getSheet(sheetName);
-		Cell cell=null;
+		Sheet sheet = workbook.getSheet(sheetName);
+		Cell cell = null;
 		try {
 			cell = sheet.getRow(rowNum).createCell(cellNum);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			sheet.createRow(rowNum);
 			cell = sheet.getRow(rowNum).createCell(cellNum);
 		}
-		
+
 		cell.setCellValue(value);
 		FileOutputStream fos = null;
 

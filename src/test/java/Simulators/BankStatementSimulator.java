@@ -98,9 +98,9 @@ public class BankStatementSimulator {
 
 					}
 
-					//updating the current date in prvDayDate file of properties file
+					// updating the current date in prvDayDate file of properties file
 					property.writeToProperties("prvDayDate", stmDate.format(formatterForFileCheck), URL.PROPERTY_PATH);
-					//Changing the serial_num as it's bankstatement folder got changed
+					// Changing the serial_num as it's bankstatement folder got changed
 					property.writeToProperties("serial_num", "1", URL.PROPERTY_PATH);
 				}
 
@@ -144,7 +144,7 @@ public class BankStatementSimulator {
 
 	public static Map<String, Object> mainBranch(Map<String, Object> payLog, String timestamp, String payout_Mode,
 			String stmFilePath, int randomNum) throws ClassNotFoundException, SQLException {
-		Map<String, Object> transaction = new LinkedHashMap<>();
+		Map<String, Object> transaction = new LinkedHashMap<String, Object>();
 		PropertiesUtility property = new PropertiesUtility();
 		property.propertiesInit(URL.PROPERTY_PATH);
 
@@ -231,7 +231,7 @@ public class BankStatementSimulator {
 	}
 
 	public static Map<String, Object> subBranch(Map<String, Object> payLog, String timestamp, String payout_Mode) {
-		Map<String, Object> transaction = new LinkedHashMap<>();
+		Map<String, Object> transaction = new LinkedHashMap<String, Object>();
 		PropertiesUtility property = new PropertiesUtility();
 		property.propertiesInit(URL.PROPERTY_PATH);
 
