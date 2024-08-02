@@ -5,7 +5,7 @@
     <classes>
       <class name="recon.test.ReconTestExecution">
         <methods>
-          <include name="validateEntryCount"/>
+          <include name="execute"/>
         </methods>
       </class> <!-- recon.test.ReconTestExecution -->
     </classes>

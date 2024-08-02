@@ -15,7 +15,7 @@ public interface URL {
 	String BANK_STM_FILE_NAME="_bankStm.json";
 	
 //	---------------------Recon Test execution paths------------------------------------------
-	String EOD_PATH="D:/Phedora/Eazypayouts/Recon log/eod_07_25/";
+	String EOD_PATH="D:/Phedora/Eazypayouts/Recon log/EOD_29_07_2024/";
 	
 	//Output File names
 	String brsComplete="brs_complete.json";

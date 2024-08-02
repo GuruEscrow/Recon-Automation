@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.json.simple.JSONArray;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -23,7 +22,7 @@ import simulator.resoucrse.URL;
 public class ReconTestExecution {
 
 	// Declared the starting date of recon according to test case or testing
-	static String fileDate = "2024/06/30";
+	static String fileDate;
 
 	// Declaring the maps to store the file entries
 	static Map<String, Object> brsMap; // Key is UTR
@@ -36,13 +35,12 @@ public class ReconTestExecution {
 	static Map<String, Object> payloadWSMap; // Key is payout_ref
 	static Map<String, Object> payoutWCMap; // Key is UTR
 	static Map<String, Object> payoutWDMap; // Key is UTR
-	static Map<String, Object> powoplMap; // Key is payout_ref
+	static Map<String, Object> powoplMap; // Key is UTR
 	static Map<String, Object> payoutWSMap; // Key is payout_ref
-	static Map<String, Object> stmWmfMap; // Key is UTR
+	static Map<String, Object> stmWmfMap; // Key is Serial Number
 	static Map<String, Object> unresolvedStmMap; // Key is UTR
 
-//	-----------------------To read the files according to date and storing all the details of file separately in Map-------------------
-
+//	-----------------To read the files according to date and storing all the details of file separately in Map---------------
 	public static void retriveDataFromOutFiles() {
 
 		// Parsing the date to required format
@@ -103,7 +101,7 @@ public class ReconTestExecution {
 					ObjectMapper mapper = new ObjectMapper();
 					JsonNode colDtlJson = mapper.readTree(collectDetails);
 					String utr = colDtlJson.get("utr_number").asText();
-					fpwmore2stmMap.put(utr, collectDetails);
+					cowostm.put(utr, collectDetails);
 				}
 				reader.close();
 			} catch (Exception e) {
@@ -126,9 +124,12 @@ public class ReconTestExecution {
 
 				String fpwmore2stms = null;
 				while ((fpwmore2stms = reader.readLine()) != null) {
-					String utr = fpwmore2stms.substring(0, fpwmore2stms.indexOf(":"));
-					String stmArray = fpwmore2stms.substring(fpwmore2stms.indexOf(":") + 1).trim();
-					fpwmore2stmMap.put(utr, stmArray);
+					ObjectMapper mapper=new ObjectMapper();
+					JsonNode payoutWithStms=mapper.readTree(fpwmore2stms);
+					
+					String utr = payoutWithStms.get("payout").get("utr").asText();
+					String payout_ref = payoutWithStms.get("payout").get("payout_ref").asText();
+					fpwmore2stmMap.put(utr, fpwmore2stms);
 				}
 				reader.close();
 			} catch (Exception e) {
@@ -198,19 +199,22 @@ public class ReconTestExecution {
 		// storing (need to edit)
 		// in ppwduMap
 		ppwmore1stmMap = new LinkedHashMap<>();
-		String ppwduPath = path + URL.ppwmore1stm;
-		if (Files.exists(Paths.get(ppwduPath))) {
+		String ppwmore1stmPath = path + URL.ppwmore1stm;
+		if (Files.exists(Paths.get(ppwmore1stmPath))) {
 			FileInputStream fis = null;
 
 			try {
-				fis = new FileInputStream(ppwduPath);
+				fis = new FileInputStream(ppwmore1stmPath);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
 
-				String ppwduStms = null;
-				while ((ppwduStms = reader.readLine()) != null) {
-					String utr = ppwduStms.substring(0, ppwduStms.indexOf(":"));
-					String stmArray = ppwduStms.substring(ppwduStms.indexOf(":") + 1).trim();
-					ppwmore1stmMap.put(utr, stmArray);
+				String ppwmore1Stms = null;
+				while ((ppwmore1Stms = reader.readLine()) != null) {
+					ObjectMapper mapper=new ObjectMapper();
+					JsonNode payoutWithStms=mapper.readTree(ppwmore1Stms);
+					
+					String utr = payoutWithStms.get("payout").get("utr").asText();
+					String payout_ref = payoutWithStms.get("payout").get("payout_ref").asText();
+					ppwmore1stmMap.put(utr, ppwmore1Stms);
 				}
 				reader.close();
 			} catch (Exception e) {
@@ -334,9 +338,11 @@ public class ReconTestExecution {
 
 				String powoplDetails = null;
 				while ((powoplDetails = reader.readLine()) != null) {
-					int index = powoplDetails.indexOf("_");
-					String payout_ref = powoplDetails.substring(index + 1);
-					powoplMap.put(payout_ref, powoplDetails);
+					int index = powoplDetails.indexOf("{");
+					ObjectMapper mapper=new ObjectMapper();
+					JsonNode payoutLog=mapper.readTree(powoplDetails.substring(index));
+					String utr = payoutLog.get("utr").asText();
+					powoplMap.put(utr, powoplDetails.substring(index));
 				}
 				reader.close();
 			} catch (Exception e) {
@@ -392,7 +398,7 @@ public class ReconTestExecution {
 					String internalRefNum = payoutLog.get("internalReferenceNumber").asText();
 					String serial_num = payoutLog.get("serialNumber").asText();
 
-					stmWmfMap.put(internalRefNum, stmWithoutUtr);
+					stmWmfMap.put(serial_num, stmWithoutUtr);
 				}
 				reader.close();
 			} catch (Exception e) {
@@ -429,10 +435,10 @@ public class ReconTestExecution {
 		}
 
 	}
-
-	// --------------------------------All file data is uploaded into Map and
-	// Array--------------------------------------------------
-	@Test
+	// ----------------------All file data is uploaded into Map and Array---------------------------------------------
+	
+	
+	// ---------------------Asserting the result by using the entry count in each file according to date
 	public static void validateEntryCount() {
 
 		// Calling the data retriever method
@@ -525,7 +531,7 @@ public class ReconTestExecution {
 			break;
 
 		case "2024/07/01":
-			brsDataCount = 0;
+			brsDataCount = 1;
 			collectWoStmDataCount = 0;
 			fpwmore2stmDataCount = 0;
 			invalidDBDataCount = 0;
@@ -542,9 +548,9 @@ public class ReconTestExecution {
 			break;
 
 		case "2024/07/02":
-			brsDataCount = 8;
+			brsDataCount = 9;
 			collectWoStmDataCount = 0;
-			fpwmore2stmDataCount = 0;
+			fpwmore2stmDataCount = 1;
 			invalidDBDataCount = 0;
 			invalidSDataCount = 0;
 			ppwmore1stmDataCount = 2;
@@ -555,11 +561,11 @@ public class ReconTestExecution {
 			payoutWoplDataCount = 1;
 			payoutWSDataCount = 13;
 			stmWmfDataCount = 0;
-			unresolvedStmDataCount = 1;
+			unresolvedStmDataCount = 2;
 			break;
 
 		case "2024/07/03":
-			brsDataCount = 4;
+			brsDataCount = 8;
 			collectWoStmDataCount = 0;
 			fpwmore2stmDataCount = 0;
 			invalidDBDataCount = 3;
@@ -572,11 +578,11 @@ public class ReconTestExecution {
 			payoutWoplDataCount = 1;
 			payoutWSDataCount = 5;
 			stmWmfDataCount = 0;
-			unresolvedStmDataCount = 1;
+			unresolvedStmDataCount = 2;
 			break;
 
 		case "2024/07/04":
-			brsDataCount = 1;
+			brsDataCount = 3;
 			collectWoStmDataCount = 0;
 			fpwmore2stmDataCount = 0;
 			invalidDBDataCount = 0;
@@ -589,7 +595,7 @@ public class ReconTestExecution {
 			payoutWoplDataCount = 0;
 			payoutWSDataCount = 4;
 			stmWmfDataCount = 0;
-			unresolvedStmDataCount = 2;
+			unresolvedStmDataCount = 3;
 			break;
 
 		case "2024/07/05":
@@ -598,7 +604,7 @@ public class ReconTestExecution {
 			fpwmore2stmDataCount = 1;
 			invalidDBDataCount = 0;
 			invalidSDataCount = 0;
-			ppwmore1stmDataCount = 1;
+			ppwmore1stmDataCount = 0;
 			payloadWpayoutDataCount = 1;
 			payloadWSDataCount = 4;
 			payoutWCDataCount = 7;
@@ -606,7 +612,58 @@ public class ReconTestExecution {
 			payoutWoplDataCount = 0;
 			payoutWSDataCount = 5;
 			stmWmfDataCount = 1;
-			unresolvedStmDataCount = 2;
+			unresolvedStmDataCount = 3;
+			break;
+		
+		case "2024/07/06":
+			brsDataCount = 10;
+			collectWoStmDataCount = 1;
+			fpwmore2stmDataCount = 0;
+			invalidDBDataCount = 1;
+			invalidSDataCount = 1;
+			ppwmore1stmDataCount = 1;
+			payloadWpayoutDataCount = 0;
+			payloadWSDataCount = 4;
+			payoutWCDataCount = 9;
+			payoutWDDataCount = 1;
+			payoutWoplDataCount = 0;
+			payoutWSDataCount = 5;
+			stmWmfDataCount = 0;
+			unresolvedStmDataCount = 4;
+			break;
+			
+		case "2024/07/07":
+			brsDataCount = 3;
+			collectWoStmDataCount = 0;
+			fpwmore2stmDataCount = 0;
+			invalidDBDataCount = 0;
+			invalidSDataCount = 0;
+			ppwmore1stmDataCount = 0;
+			payloadWpayoutDataCount = 0;
+			payloadWSDataCount = 4;
+			payoutWCDataCount = 9;
+			payoutWDDataCount = 1;
+			payoutWoplDataCount = 0;
+			payoutWSDataCount = 5;
+			stmWmfDataCount = 0;
+			unresolvedStmDataCount = 5;
+			break;
+			
+		case "2024/07/08":
+			brsDataCount = 0;
+			collectWoStmDataCount = 0;
+			fpwmore2stmDataCount = 0;
+			invalidDBDataCount = 0;
+			invalidSDataCount = 0;
+			ppwmore1stmDataCount = 0;
+			payloadWpayoutDataCount = 0;
+			payloadWSDataCount = 4;
+			payoutWCDataCount = 9;
+			payoutWDDataCount = 1;
+			payoutWoplDataCount = 0;
+			payoutWSDataCount = 5;
+			stmWmfDataCount = 0;
+			unresolvedStmDataCount = 5;
 			break;
 		}
 		
@@ -619,24 +676,25 @@ public class ReconTestExecution {
 		validate.assertEquals(cowostm.size(), collectWoStmDataCount,
 				"Collect without statement count not matching on " + fileDate);
 		validate.assertEquals(fpwmore2stmMap.size(), fpwmore2stmDataCount,
-				"fpwdu file count not matching on " + fileDate);
+				"fpwithmorethan2stm file count not matching on " + fileDate);
 		validate.assertEquals(invalidBDMap.size(), invalidDBDataCount,
 				"invalidBD file count not matching on " + fileDate);
 		validate.assertEquals(invalidSMap.size(), invalidSDataCount,
 				"invalidSignature file count not matching on " + fileDate);
 		validate.assertEquals(ppwmore1stmMap.size(), ppwmore1stmDataCount,
-				"ppwdu file count not matching on " + fileDate);
+				"ppwithmorethan1stm file count not matching on " + fileDate);
 		validate.assertEquals(payloadWpayoutMap.size(), payloadWpayoutDataCount,
 				"payloadWpayout file count not matching on " + fileDate);
 		validate.assertEquals(payloadWSMap.size(), payloadWSDataCount,
 				"payloadWS file count not matching on " + fileDate);
 		validate.assertEquals(payoutWCMap.size(), payoutWCDataCount, "payoutWC file count not matching on " + fileDate);
 		validate.assertEquals(payoutWDMap.size(), payoutWDDataCount, "payoutWD file count not matching on " + fileDate);
-		validate.assertEquals(powoplMap.size(), payoutWoplDataCount, "stmWdUTR file count not matching on " + fileDate);
+		validate.assertEquals(powoplMap.size(), payoutWoplDataCount, "payout without payload file count not matching on " + fileDate);
 		validate.assertEquals(payoutWSMap.size(), payoutWSDataCount, "payoutWS file count not matching on " + fileDate);
 		validate.assertEquals(stmWmfMap.size(), stmWmfDataCount, "stmWmf file count not matching on " + fileDate);
 		validate.assertEquals(unresolvedStmMap.size(), unresolvedStmDataCount,
 				"unresolvedStm file count not matching on " + fileDate);
+		//System.out.println(invalidBDMap);
 
 		System.out.println("brs_complete count: "+brsMap.size()); // 2
 		System.out.println("collect_wo_statement: "+cowostm.size()); // 0
@@ -654,6 +712,24 @@ public class ReconTestExecution {
 		System.out.println("unresolved_stm: "+unresolvedStmMap.size()); // 8
 
 		validate.assertAll();
+	}
+	// The files entries count which doesn't match it with expected shows the Assert Exception
+	
+	@Test
+	public static void execute() {
+		
+		TestCaseBatch_1.batch1();
+		TestCaseBatch_2.batch2();
+		TestCaseBatch_3.batch3();
+		TestCaseBatch_4.batch4();
+		TestCaseBatch_5.batch5();
+		TestCaseBatch_6.batch6();
+		TestCaseBatch_7.batch7();
+		TestCaseBatch_8.batch8();
+		TestCaseBatch_9.batch9();
+		TestCaseBatch_10.batch10();
+		TestCaseBatch_11.batch11();
+		
 	}
 
 }

@@ -2,15 +2,15 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-07-25T17:44:50 IST" name="Default suite" finished-at="2024-07-25T17:44:50 IST" duration-ms="362">
+  <suite started-at="2024-08-02T18:31:00 IST" name="Default suite" finished-at="2024-08-02T18:31:01 IST" duration-ms="885">
     <groups>
     </groups>
-    <test started-at="2024-07-25T17:44:50 IST" name="Default test" finished-at="2024-07-25T17:44:50 IST" duration-ms="362">
+    <test started-at="2024-08-02T18:31:00 IST" name="Default test" finished-at="2024-08-02T18:31:01 IST" duration-ms="885">
       <class name="recon.test.ReconTestExecution">
-        <test-method signature="validateEntryCount()[pri:0, instance:recon.test.ReconTestExecution@2e8c1c9b]" started-at="2024-07-25T17:44:50 IST" name="validateEntryCount" finished-at="2024-07-25T17:44:50 IST" duration-ms="334" status="PASS">
+        <test-method signature="execute()[pri:0, instance:recon.test.ReconTestExecution@15bb5034]" started-at="2024-08-02T18:31:00 IST" name="execute" finished-at="2024-08-02T18:31:01 IST" duration-ms="852" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- validateEntryCount -->
+        </test-method> <!-- execute -->
       </class> <!-- recon.test.ReconTestExecution -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
