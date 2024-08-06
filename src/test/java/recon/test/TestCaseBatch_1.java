@@ -201,8 +201,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_6_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_6_utr),
 				"The txn ("+tc_6_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_6_utr),
-				"The txn ("+tc_6_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_6_payoutref),
+				"The txn ("+tc_6_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_6_utr),
 				"The txn ("+tc_6_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_6_payoutref),
@@ -240,8 +240,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_8_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_8_utr),
 				"The txn ("+tc_8_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_8_utr),
-				"The txn ("+tc_8_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_8_payoutref),
+				"The txn ("+tc_8_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_8_utr),
 				"The txn ("+tc_8_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_8_payoutref),
@@ -274,8 +274,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_9_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_9_utr),
 				"The txn ("+tc_9_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_9_utr),
-				"The txn ("+tc_9_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_9_payoutref),
+				"The txn ("+tc_9_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_9_utr),
 				"The txn ("+tc_9_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_9_payoutref),
@@ -308,8 +308,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_11_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_11_utr),
 				"The txn ("+tc_11_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_11_utr),
-				"The txn ("+tc_11_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_11_payoutref),
+				"The txn ("+tc_11_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_11_utr),
 				"The txn ("+tc_11_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWSMap.containsKey(tc_11_payoutref),
@@ -342,8 +342,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_12_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_12_utr),
 				"The txn ("+tc_12_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_12_utr),
-				"The txn ("+tc_12_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_12_payoutref),
+				"The txn ("+tc_12_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_12_utr),
 				"The txn ("+tc_12_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWSMap.containsKey(tc_12_payoutref),
@@ -376,8 +376,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_14_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_14_utr),
 				"The txn ("+tc_14_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_14_utr),
-				"The txn ("+tc_14_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_14_payoutref),
+				"The txn ("+tc_14_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_14_utr),
 				"The txn ("+tc_14_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_14_payoutref),
@@ -410,8 +410,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_15_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_15_utr),
 				"The txn ("+tc_15_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_15_utr),
-				"The txn ("+tc_15_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_15_payoutref),
+				"The txn ("+tc_15_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_15_utr),
 				"The txn ("+tc_15_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_15_payoutref),
@@ -444,8 +444,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_17_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_17_utr),
 				"The txn ("+tc_17_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_17_utr),
-				"The txn ("+tc_17_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_17_payoutref),
+				"The txn ("+tc_17_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_17_utr),
 				"The txn ("+tc_17_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_17_payoutref),
@@ -478,8 +478,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_18_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_18_utr),
 				"The txn ("+tc_18_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_18_utr),
-				"The txn ("+tc_18_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_18_payoutref),
+				"The txn ("+tc_18_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_18_utr),
 				"The txn ("+tc_18_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_18_payoutref),
@@ -512,8 +512,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_19_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_19_utr),
 				"The txn ("+tc_19_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_19_utr),
-				"The txn ("+tc_19_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_19_payoutref),
+				"The txn ("+tc_19_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_19_utr),
 				"The txn ("+tc_19_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_19_payoutref),
@@ -546,8 +546,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_20_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_20_utr),
 				"The txn ("+tc_20_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_20_utr),
-				"The txn ("+tc_20_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_20_payoutref),
+				"The txn ("+tc_20_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_20_utr),
 				"The txn ("+tc_20_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_20_payoutref),
@@ -580,8 +580,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_21_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_21_utr),
 				"The txn ("+tc_21_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_21_utr),
-				"The txn ("+tc_21_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_21_payoutref),
+				"The txn ("+tc_21_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_21_utr),
 				"The txn ("+tc_21_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_21_payoutref),
@@ -614,8 +614,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_22_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_22_utr),
 				"The txn ("+tc_22_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_22_utr),
-				"The txn ("+tc_22_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_22_payoutref),
+				"The txn ("+tc_22_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_22_utr),
 				"The txn ("+tc_22_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_22_payoutref),
@@ -648,8 +648,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_23_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_23_utr),
 				"The txn ("+tc_23_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_23_utr),
-				"The txn ("+tc_23_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_23_payoutref),
+				"The txn ("+tc_23_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_23_utr),
 				"The txn ("+tc_23_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_23_payoutref),
@@ -682,8 +682,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_24_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_24_utr),
 				"The txn ("+tc_24_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_24_utr),
-				"The txn ("+tc_24_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_24_payoutref),
+				"The txn ("+tc_24_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_24_utr),
 				"The txn ("+tc_24_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_24_payoutref),
@@ -716,8 +716,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_25_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_25_utr),
 				"The txn ("+tc_25_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_25_utr),
-				"The txn ("+tc_25_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_25_payoutref),
+				"The txn ("+tc_25_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_25_utr),
 				"The txn ("+tc_25_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_25_payoutref),
@@ -750,8 +750,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_27_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_27_utr),
 				"The txn ("+tc_27_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_27_utr),
-				"The txn ("+tc_27_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_27_payoutref),
+				"The txn ("+tc_27_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_27_utr),
 				"The txn ("+tc_27_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_27_payoutref),
@@ -784,8 +784,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_29_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_29_utr),
 				"The txn ("+tc_29_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_29_utr),
-				"The txn ("+tc_29_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_29_payoutref),
+				"The txn ("+tc_29_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_29_utr),
 				"The txn ("+tc_29_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_29_payoutref),
@@ -818,8 +818,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_31_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_31_utr),
 				"The txn ("+tc_31_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_31_utr),
-				"The txn ("+tc_31_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_31_payoutref),
+				"The txn ("+tc_31_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_31_utr),
 				"The txn ("+tc_31_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_31_payoutref),
@@ -852,8 +852,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_33_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_33_utr),
 				"The txn ("+tc_33_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_33_utr),
-				"The txn ("+tc_33_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_33_payoutref),
+				"The txn ("+tc_33_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_33_utr),
 				"The txn ("+tc_33_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_33_payoutref),
@@ -889,8 +889,8 @@ public class TestCaseBatch_1 extends ReconTestExecution {
 				"The txn ("+tc_35_utr+") is present in fpwmore2stm which should not be there on " + fileDate);
 		validatation.assertFalse(invalidBDMap.containsKey(tc_35_utr),
 				"The txn ("+tc_35_utr+") is present in invalid bene details which should not be there on " + fileDate);
-		validatation.assertFalse(invalidSMap.containsKey(tc_35_utr),
-				"The txn ("+tc_35_utr+") is present in invalid signature which should not be there on " + fileDate);
+		validatation.assertFalse(invalidSMap.containsKey(tc_35_payoutref),
+				"The txn ("+tc_35_payoutref+") is present in invalid signature which should not be there on " + fileDate);
 		validatation.assertFalse(ppwmore1stmMap.containsKey(tc_35_utr),
 				"The txn ("+tc_35_utr+") is present in ppwmore1stm which should not be there on " + fileDate);
 		validatation.assertFalse(payloadWpayoutMap.containsKey(tc_35_payoutref),
