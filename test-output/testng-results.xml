@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-08-06T11:54:20 IST" name="Default suite" finished-at="2024-08-06T11:54:22 IST" duration-ms="1818">
+  <suite started-at="2024-08-19T11:09:37 IST" name="Default suite" finished-at="2024-08-19T11:09:44 IST" duration-ms="6218">
     <groups>
     </groups>
-    <test started-at="2024-08-06T11:54:20 IST" name="Default test" finished-at="2024-08-06T11:54:22 IST" duration-ms="1818">
-      <class name="recon.test.ReconTestExecution">
-        <test-method signature="execute()[pri:0, instance:recon.test.ReconTestExecution@15bb5034]" started-at="2024-08-06T11:54:20 IST" name="execute" finished-at="2024-08-06T11:54:22 IST" duration-ms="1784" status="PASS">
+    <test started-at="2024-08-19T11:09:37 IST" name="Default test" finished-at="2024-08-19T11:09:44 IST" duration-ms="6218">
+      <class name="recon.datafetcher.GetVanCollects">
+        <test-method signature="call()[pri:0, instance:recon.datafetcher.GetVanCollects@248e319b]" started-at="2024-08-19T11:09:37 IST" name="call" finished-at="2024-08-19T11:09:44 IST" duration-ms="6174" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- execute -->
-      </class> <!-- recon.test.ReconTestExecution -->
+        </test-method> <!-- call -->
+      </class> <!-- recon.datafetcher.GetVanCollects -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
