@@ -15,13 +15,13 @@ public interface URL {
 	String BANK_STM_FILE_NAME="_bankStm.json";
 	
 //	---------------------Recon Test execution paths------------------------------------------
-	String EOD_PATH="D:/Phedora/Eazypayouts/Recon log/EOD_29_07_2024/";
+	String EOD_PATH="D:/Phedora/Eazypayouts/BRS Script/axis-brs/TestData/EOD/";
 	
 	//Output File names
 	String brsComplete="brs_complete.json";
 	String cowostatement="collects_wo_statement.json";
 	String fpwmore2stm="failed_payout_with_more_than_2_statement.json";
-	String invalidBeneDetails="invalid_bene_details.json";
+	String invalidBeneDetails="bene_details_mismatch.json";
 	String invalidSignature="invalid_signatures.json";
 	String ppwmore1stm="passed_payout_with_more_than_1_statement.json";
 	String payloadWoPayout="payload_wo_payout.json";
@@ -32,6 +32,8 @@ public interface URL {
 	String payoutWoStm="payout_wo_statement.json";
 	String stmWithMissingFields="statements_with_missing_fields.json";
 	String unresolvedStm="unresolved_statements.json";
+	String beneDetailsAbsent="bene_details_absent.json";
+	String payoutWiMisField="payouts_with_missing_fields.json";
 	
 
 }

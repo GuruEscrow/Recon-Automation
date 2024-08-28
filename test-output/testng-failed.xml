@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="recon.datafetcher.GetVanCollects">
+      <class name="recon.test.ReconTestExecution">
         <methods>
-          <include name="call"/>
+          <include name="execute"/>
         </methods>
-      </class> <!-- recon.datafetcher.GetVanCollects -->
+      </class> <!-- recon.test.ReconTestExecution -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

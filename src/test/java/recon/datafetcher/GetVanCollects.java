@@ -66,7 +66,7 @@ public class GetVanCollects {
 	@Test
 	public static void call() throws IOException {
 		//Dates
-		String startDate = "2024-08-18 00:00:00";
+		String startDate = "2024-08-27 00:00:00";
 		
 		//Formatting the start date and adding the plus 1 day for end date
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

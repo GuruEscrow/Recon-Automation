@@ -1043,7 +1043,7 @@ public class TestCaseBatch_10 extends ReconTestExecution{
 				"The txn (" + tc_39_utr + ") is present in unresolvedStms which should not be there on " + fileDate);
 
 		/* TC-40 */
-		String tc_40_serialNum = "7";
+		String tc_40_serialNum = "There is no proper key to identify the txn";
 		// Valid
 		validatation.assertFalse(stmWmfMap.containsKey(tc_40_serialNum), "The txn (" + tc_40_serialNum
 				+ ") is present in stmWithMissingFiled which should not be there on " + fileDate);
