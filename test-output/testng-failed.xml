@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="recon.test.ReconTestExecution">
+      <class name="recon.datafetcher.CRN_Fetch">
         <methods>
-          <include name="execute"/>
+          <include name="fetch_utr_for_EI_and_updated"/>
         </methods>
-      </class> <!-- recon.test.ReconTestExecution -->
+      </class> <!-- recon.datafetcher.CRN_Fetch -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

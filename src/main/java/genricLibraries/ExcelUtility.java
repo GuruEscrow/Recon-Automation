@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,9 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /*
  * This class contains reusable methods to perform actions on excel file 
@@ -76,11 +80,78 @@ public class ExcelUtility {
 		df = new DataFormatter();
 		Sheet sheet = workbook.getSheet(sheetName);
 
-		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+		for (int i = 10; i <= sheet.getLastRowNum(); i++) {
 
+            if(sheet.getRow(i).getCell(0).equals("")) {
+            	break;
+            }
 			String key = df.formatCellValue(sheet.getRow(i).getCell(0));
 			String value = df.formatCellValue(sheet.getRow(i).getCell(1));
 			map.put(key, value);
+		}
+		return map;
+	}
+	
+	/*
+	 * To Fetch the data as json format
+	 */
+	public Map<String, String> getDataFromExcelAsJson(String sheetName) throws JsonProcessingException {
+
+		Map<String, String> map = new HashMap<String, String>();
+		df = new DataFormatter();
+		Sheet sheet = workbook.getSheet(sheetName);
+
+		for (int i = 10; i <= sheet.getLastRowNum(); i++) {
+
+            if(sheet.getRow(i).getCell(0).equals("")) {
+            	break;
+            }
+			String tran_date = df.formatCellValue(sheet.getRow(i).getCell(0));
+			String chq_no = df.formatCellValue(sheet.getRow(i).getCell(1));
+			String particulars = df.formatCellValue(sheet.getRow(i).getCell(2));
+			String dr_amount = df.formatCellValue(sheet.getRow(i).getCell(2));
+			String cr_amount = df.formatCellValue(sheet.getRow(i).getCell(2));
+			
+			//Extracting the UTR from particulars
+			String utr = null;
+			String [] particulars_array = particulars.split("/");
+			
+			if(particulars_array[0].equals("IMPS")) {
+				// 2 index is the UTR in imps
+				utr = particulars_array[2];
+			}else if(particulars_array[0].equals("NEFT")) {
+				//  1st index is the UTR in NEFT
+				utr = particulars_array[1];
+			}else if(particulars_array[0].equals("IFT")) {
+				// 1st index is the UTR in IFT
+				utr = particulars_array[1];
+			}else if(particulars_array[0].equals("RTGS")) {
+				// 1st index is the UTR in RTGS
+				utr = particulars_array[1];
+			}else {
+				System.out.println(Arrays.toString(particulars_array));
+			}
+			
+			if(utr!=null) {
+				ObjectMapper mapper = new ObjectMapper();
+				
+				Map<String, String> stmJsonMap = new HashMap<String, String>();
+				stmJsonMap.put("tran_date", tran_date);
+				stmJsonMap.put("utr", tran_date);
+				stmJsonMap.put("particulars", tran_date);
+				
+				if(!dr_amount.equals("")) {
+					stmJsonMap.put("amount", dr_amount);
+					stmJsonMap.put("drcr", "DR");
+				}else if(!cr_amount.equals("")) {
+					stmJsonMap.put("amount", cr_amount);
+					stmJsonMap.put("drcr", "CR");
+				}
+				
+				String stmJsonString = mapper.writeValueAsString(stmJsonMap);
+				
+				map.put(utr, stmJsonString);
+			}
 		}
 		return map;
 	}

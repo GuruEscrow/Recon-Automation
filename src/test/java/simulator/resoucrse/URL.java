@@ -15,7 +15,10 @@ public interface URL {
 	String BANK_STM_FILE_NAME="_bankStm.json";
 	
 //	---------------------Recon Test execution paths------------------------------------------
-	String EOD_PATH="D:/Phedora/Eazypayouts/BRS Script/axis-brs/TestData/EOD/";
+	String EOD_PATH="C:/BRS/EOD";
+	
+	//Input File names
+	String payoutLog="payout_log.json";
 	
 	//Output File names
 	String brsComplete="brs_complete.json";

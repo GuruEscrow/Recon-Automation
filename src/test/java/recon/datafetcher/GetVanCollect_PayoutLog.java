@@ -16,57 +16,15 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class GetVanCollects {
+public class GetVanCollect_PayoutLog {
 	
 	static final String apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ODc4MmIzMi1lMzM4LTQ0YjMtYWU3YS00YjQxOTE2Njg1YTUiLCJuYW1lIjpbImdldF9heGlzX2JhbmtfYWNjb3VudF9zdGF0ZW1lbnQiLCJnZXRfcGF5b3V0X2xvZ19lbnRyaWVzX2RhdGVfcmFuZ2UiLCJnZXRfdmFuX2NvbGxlY3RzX2VudHJpZXNfZGF0ZV9yYW5nZSIsImNoZWNrX2FuZF9wcm9jZXNzX3N0YXR1c193aXRoX2F4aXNfYmFuayIsImdldF9wYXlvdXRfbG9nX2VudHJpZXMiLCJjaGVja19zdGF0dXNfd2l0aF9heGlzX2JhbmsiXSwiYXV0aG9yaXplZF9wZXJzb24iOnsibmFtZSI6IkRpbmFrYXIgSmFpbiJ9LCJ0eXBlIjoic2VydmljZSIsImVudiI6ImxpdmUiLCJpYXQiOjE3MjIzNDQxNzh9.2lrLVLBQG8lZvAGrLJMpsS4OfO3hKfbfhN5gUoSJNEQ";
     static final String baseURL = "https://devaudit.eazypayouts.com/";
     
-// -------------------------To fetch the vanCollects using api-------------------------
-	public static Response fetchVanCollect(String startDate, String endDate) {
-
-		// JSONObject outerBody = new JSONObject();
-		JSONObject van_collect_body = new JSONObject();
-		van_collect_body.put("start_timestamp", startDate);
-		van_collect_body.put("end_timestamp", endDate);
-
-		// It is the apikey for header and to access the api
-        String URL = baseURL+"v1/service/get_van_collects_entries_date_range";
-
-		Response response = RestAssured.given().contentType(ContentType.JSON).accept(ContentType.JSON)
-				.header("apikey", apiKey).body(van_collect_body.toJSONString()).baseUri(URL).when().post().then().assertThat()
-				.statusCode(200).extract().response();
-
-		// .log().body() to print the request body which we sent this should hard coded
-		// after baseUri
-
-		return response;
-	}
-
-// ---------------------------To fetch the payout_log by using api-------------------
-	public static Response fetchPayoutLog(String startDate, String endDate) {
-
-		// JSONObject outerBody = new JSONObject();
-		JSONObject payout_log_body = new JSONObject();
-		payout_log_body.put("start_timestamp", startDate);
-		payout_log_body.put("end_timestamp", endDate);
-
-		// It is the apikey for header and to access the api
-		String URL = baseURL+"v1/service/get_payout_log_entries_date_range";
-
-		Response response = RestAssured.given().contentType(ContentType.JSON).accept(ContentType.JSON)
-				.header("apikey", apiKey).body(payout_log_body.toJSONString()).baseUri(URL).when().post().then().assertThat()
-				.statusCode(200).extract().response();
-
-		// .log().body() to print the request body which we sent this should hard coded
-		// after baseUri
-
-		return response;
-	}
-
-	@Test
+    @Test
 	public static void call() throws IOException {
 		//Dates
-		String startDate = "2024-08-27 00:00:00";
+		String startDate = "2024-12-07 00:00:00";
 		
 		//Formatting the start date and adding the plus 1 day for end date
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -144,6 +102,48 @@ public class GetVanCollects {
 		}
 // -----------------------------van_collects file downloaded successfully-------------------------------
 
+	}
+    
+// -------------------------To fetch the vanCollects using api-------------------------
+	public static Response fetchVanCollect(String startDate, String endDate) {
+
+		// JSONObject outerBody = new JSONObject();
+		JSONObject van_collect_body = new JSONObject();
+		van_collect_body.put("start_timestamp", startDate);
+		van_collect_body.put("end_timestamp", endDate);
+
+		// It is the apikey for header and to access the api
+        String URL = baseURL+"v1/service/get_van_collects_entries_date_range";
+
+		Response response = RestAssured.given().contentType(ContentType.JSON).accept(ContentType.JSON)
+				.header("apikey", apiKey).body(van_collect_body.toJSONString()).baseUri(URL).when().post().then().assertThat()
+				.statusCode(200).extract().response();
+
+		// .log().body() to print the request body which we sent this should hard coded
+		// after baseUri
+
+		return response;
+	}
+
+// ---------------------------To fetch the payout_log by using api-------------------
+	public static Response fetchPayoutLog(String startDate, String endDate) {
+
+		// JSONObject outerBody = new JSONObject();
+		JSONObject payout_log_body = new JSONObject();
+		payout_log_body.put("start_timestamp", startDate);
+		payout_log_body.put("end_timestamp", endDate);
+
+		// It is the apikey for header and to access the api
+		String URL = baseURL+"v1/service/get_payout_log_entries_date_range";
+
+		Response response = RestAssured.given().contentType(ContentType.JSON).accept(ContentType.JSON)
+				.header("apikey", apiKey).body(payout_log_body.toJSONString()).baseUri(URL).when().post().then().assertThat()
+				.statusCode(200).extract().response();
+
+		// .log().body() to print the request body which we sent this should hard coded
+		// after baseUri
+
+		return response;
 	}
 
 }

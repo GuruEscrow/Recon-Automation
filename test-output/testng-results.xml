@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-08-28T15:42:17 IST" name="Default suite" finished-at="2024-08-28T15:42:18 IST" duration-ms="1248">
+  <suite started-at="2024-12-08T21:27:27 IST" name="Default suite" finished-at="2024-12-08T21:27:28 IST" duration-ms="1400">
     <groups>
     </groups>
-    <test started-at="2024-08-28T15:42:17 IST" name="Default test" finished-at="2024-08-28T15:42:18 IST" duration-ms="1248">
-      <class name="recon.test.ReconTestExecution">
-        <test-method signature="execute()[pri:0, instance:recon.test.ReconTestExecution@15bb5034]" started-at="2024-08-28T15:42:17 IST" name="execute" finished-at="2024-08-28T15:42:18 IST" duration-ms="1203" status="PASS">
+    <test started-at="2024-12-08T21:27:27 IST" name="Default test" finished-at="2024-12-08T21:27:28 IST" duration-ms="1400">
+      <class name="recon.datafetcher.CRN_Fetch">
+        <test-method signature="crnFetchFrom_PayoutLog_UsingUnresolvedStmts()[pri:0, instance:recon.datafetcher.CRN_Fetch@34e9fd99]" started-at="2024-12-08T21:27:27 IST" name="crnFetchFrom_PayoutLog_UsingUnresolvedStmts" finished-at="2024-12-08T21:27:28 IST" duration-ms="1351" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- execute -->
-      </class> <!-- recon.test.ReconTestExecution -->
+        </test-method> <!-- crnFetchFrom_PayoutLog_UsingUnresolvedStmts -->
+      </class> <!-- recon.datafetcher.CRN_Fetch -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
