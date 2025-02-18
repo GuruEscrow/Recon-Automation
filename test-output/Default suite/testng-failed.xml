@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="recon.datafetcher.CRN_Fetch">
+      <class name="recon.datafetcher.Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt">
         <methods>
-          <include name="fetch_utr_for_EI_and_updated"/>
+          <include name="seprateProcessedPayoutFromPayoutWoStmts"/>
         </methods>
-      </class> <!-- recon.datafetcher.CRN_Fetch -->
+      </class> <!-- recon.datafetcher.Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

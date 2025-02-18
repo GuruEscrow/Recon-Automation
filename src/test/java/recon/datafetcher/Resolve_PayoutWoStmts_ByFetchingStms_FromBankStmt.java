@@ -30,14 +30,16 @@ public class Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt {
 	@Test
 	public void seprateProcessedPayoutFromPayoutWoStmts() throws IOException {
 
-		String payoutwsPath = "C:/BRS/EOD/2024/11/13/out/payout_wo_statement.json";
-		String payloadwsPath = "C:/BRS/EOD/2024/11/13/out/payload_wo_statement.json";
+		String payoutwsPath = "C:/BRS/EOD/2024/12/31/out/payout_wo_statement.json";
+		String payloadwsPath = "C:/BRS/EOD/2024/12/31/out/payload_wo_statement.json";
 
 		String failedPayouts = "D:/BRS/failed_po_wo_statements.json";
 		String processedPayouts = "D:/BRS/proccessed_po_wo_statements.json";
 		String failedPayloads = "D:/BRS/failed_payload_wo_statements.json";
 		String processedPayloads = "D:/BRS/proccessed_payload_wo_statements.json";
 		String payloadsWoPayout = "D:/BRS/payload_wo_payout.json";
+		String processingPayouts = "D:/BRS/processing_po_wo_statements.json";
+		String processingPayloads = "D:/BRS/processing_payload_wo_statements.json";
 
 		if (!(Files.exists(Path.of(failedPayouts)))) {
 			try {
@@ -78,6 +80,22 @@ public class Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt {
 				e.printStackTrace();
 			}
 		}
+		
+		if (!(Files.exists(Path.of(processingPayouts)))) {
+			try {
+				Files.createFile(Path.of(processingPayouts));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (!(Files.exists(Path.of(processingPayloads)))) {
+			try {
+				Files.createFile(Path.of(processingPayloads));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 		// Truncating the file before writing it
 		Files.newBufferedWriter(Path.of(failedPayouts), StandardOpenOption.TRUNCATE_EXISTING);
@@ -85,10 +103,13 @@ public class Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt {
 		Files.newBufferedWriter(Path.of(failedPayloads), StandardOpenOption.TRUNCATE_EXISTING);
 		Files.newBufferedWriter(Path.of(processedPayloads), StandardOpenOption.TRUNCATE_EXISTING);
 		Files.newBufferedWriter(Path.of(payloadsWoPayout), StandardOpenOption.TRUNCATE_EXISTING);
+		Files.newBufferedWriter(Path.of(processingPayouts), StandardOpenOption.TRUNCATE_EXISTING);
+		Files.newBufferedWriter(Path.of(processingPayloads), StandardOpenOption.TRUNCATE_EXISTING);
 
 		Map<String, Object> payoutWSMap = new LinkedHashMap<String, Object>();
 		ArrayList<String> failedPayoutref = new ArrayList<String>();
 		ArrayList<String> proccessedPayoutref = new ArrayList<String>();
+		ArrayList<String> processingPayoutref = new ArrayList<String>();
 		if (Files.exists(Paths.get(payoutwsPath))) {
 			FileInputStream fis = null;
 
@@ -112,9 +133,16 @@ public class Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt {
 						write.write(payoutwsPayoutlog);
 						write.write(System.lineSeparator());
 						write.close();
-					} else {
+					} else if(payout_status.equals("processed")){
 						FileWriter write = new FileWriter(processedPayouts, true);
 						proccessedPayoutref.add(payout_ref);
+						
+						write.write(payoutwsPayoutlog);
+						write.write(System.lineSeparator());
+						write.close();
+					} else {
+						FileWriter write = new FileWriter(processingPayouts, true);
+						processingPayoutref.add(payout_ref);
 						
 						write.write(payoutwsPayoutlog);
 						write.write(System.lineSeparator());
@@ -165,7 +193,15 @@ public class Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt {
 						write.write(payloadWSlog);
 						write.write(System.lineSeparator());
 						write.close();
-					} else {
+					} else if(processingPayoutref.contains(payoutRef)){
+						FileWriter write = new FileWriter(processingPayloads, true);
+
+						write.write(payloadWSlog);
+						write.write(System.lineSeparator());
+						write.close();
+						
+					}else {
+				
 						FileWriter write = new FileWriter(payloadsWoPayout, true);
 
 						write.write(payloadWSlog);
@@ -174,7 +210,7 @@ public class Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt {
 					}
 				}
 				reader.close();
-				System.out.println(duplicatePayloadPayoutref);
+//				System.out.println(duplicatePayloadPayoutref);
 			} catch (Exception e) {
 				System.err
 						.println("Error: at FileInputStream or readLine while Fetchin payoutws file " + e.getMessage());

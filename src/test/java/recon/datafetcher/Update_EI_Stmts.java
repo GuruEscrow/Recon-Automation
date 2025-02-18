@@ -23,7 +23,7 @@ public class Update_EI_Stmts {
 	public void fetch_utr_for_EI_and_updated() throws Exception {
 
 		// Change the path accordingly
-		String directoryPath = "C:/BRS/EOD/2024/11/24";
+		String directoryPath = "C:/BRS/EOD/2024/12/26";
 
 		// Paths to fetch the EI transaction from the utrTranslations file
 		String stmsPath = directoryPath + "/in/actions_taken_to_close_eod/utrTranslations.json";

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
+<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-12-08T21:27:27 IST" name="Default suite" finished-at="2024-12-08T21:27:28 IST" duration-ms="1400">
+  <suite started-at="2025-01-10T12:07:06 IST" name="Default suite" finished-at="2025-01-10T12:10:37 IST" duration-ms="211606">
     <groups>
     </groups>
-    <test started-at="2024-12-08T21:27:27 IST" name="Default test" finished-at="2024-12-08T21:27:28 IST" duration-ms="1400">
-      <class name="recon.datafetcher.CRN_Fetch">
-        <test-method signature="crnFetchFrom_PayoutLog_UsingUnresolvedStmts()[pri:0, instance:recon.datafetcher.CRN_Fetch@34e9fd99]" started-at="2024-12-08T21:27:27 IST" name="crnFetchFrom_PayoutLog_UsingUnresolvedStmts" finished-at="2024-12-08T21:27:28 IST" duration-ms="1351" status="PASS">
+    <test started-at="2025-01-10T12:07:06 IST" name="Default test" finished-at="2025-01-10T12:10:37 IST" duration-ms="211606">
+      <class name="recon.datafetcher.Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt">
+        <test-method signature="seprateProcessedPayoutFromPayoutWoStmts()[pri:0, instance:recon.datafetcher.Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt@34e9fd99]" started-at="2025-01-10T12:07:06 IST" name="seprateProcessedPayoutFromPayoutWoStmts" finished-at="2025-01-10T12:10:37 IST" duration-ms="211552" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- crnFetchFrom_PayoutLog_UsingUnresolvedStmts -->
-      </class> <!-- recon.datafetcher.CRN_Fetch -->
+        </test-method> <!-- seprateProcessedPayoutFromPayoutWoStmts -->
+      </class> <!-- recon.datafetcher.Resolve_PayoutWoStmts_ByFetchingStms_FromBankStmt -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

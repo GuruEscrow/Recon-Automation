@@ -2,18 +2,16 @@ package recon.datafetcher;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.testng.annotations.Test;
 
@@ -40,7 +38,7 @@ public class CRN_Fetch {
 	@Test
 	public void crnFetchFrom_PayoutLog_UsingUnresolvedStmts() throws ParseException {
 		// Dates
-		String startDate = "2024-12-07";
+		String startDate = "2024-12-26";
 
 		// Formatting the start date and adding the plus 1 day for end date
 		DateTimeFormatter pstDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -81,9 +79,17 @@ public class CRN_Fetch {
 					String crn = payoutLog.get("crn").asText();
 					String payout_status = payoutLog.get("payout_status").asText();
 
-					if (utr.equals("null")||payout_status.equals("processing")) {
-						System.out.println(crn);
-						payoutsMap.put(beneAccNo + "_" + amt, crn);
+					if (utr.equals("null")&&payout_status.equals("processing")) {
+//						System.out.println(crn);
+						String currentPayoutMapKey = beneAccNo + "_" + amt;
+						if(!(payoutsMap.containsKey(currentPayoutMapKey))) {
+							payoutsMap.put(currentPayoutMapKey, crn);
+						}else {
+							String allCrnForDuplicateKey = payoutsMap.get(currentPayoutMapKey)+"_"+crn;
+							payoutsMap.put(currentPayoutMapKey, allCrnForDuplicateKey);
+							//System.out.println(currentPayoutMapKey+" "+crn);
+						}
+						
 					}
 
 				}
@@ -92,6 +98,8 @@ public class CRN_Fetch {
 				System.err.println(
 						"Error: at FileInputStream or readLine while Fetchin unresolvedStm file " + e.getMessage());
 			}
+		}else {
+			System.out.println("File doesnot exits: --> path: "+payoutLogPath);
 		}
 
 		// -------------------Fetching Previous day payouts log and storing in the map
@@ -118,7 +126,13 @@ public class CRN_Fetch {
 					String beneAccNo = payoutLog.get("bene_ac_no").asText();
 					String crn = payoutLog.get("crn").asText();
 
-					previousPayoutsMap.put(utr, crn);
+					if(!(utr.equals("null")||utr.equals("NA"))) {
+						if(!(previousPayoutsMap.containsKey(utr))) {
+							previousPayoutsMap.put(utr, crn);
+						}else {
+							System.out.println(utr);
+						}	
+					}
 
 				}
 				reader.close();
@@ -126,16 +140,22 @@ public class CRN_Fetch {
 				System.err.println(
 						"Error: at FileInputStream or readLine while Fetchin unresolvedStm file " + e.getMessage());
 			}
+		}else {
+			System.out.println("File doesnot exits: --> path: "+previousDaypayoutLogPath);
 		}
 
-		// ---------------Fetching statements with missing filed File details into
-		// unresolvedStmMap
-		// System.out.println(payoutsMap);
-		System.out.println("Payouts loaded to Map");
+		/*
+		 * Fetching the unresolved statements from the input date give
+		 * Checking the payout logs by making the key of each statements
+		 * key for DR statement (KEY: beneAccNumber_amount)
+		 * key for upi DR statement (KEY: null_amount)
+		 * key for CR statement (KEY: UTR)
+		 */
+		
 		String unresolvedStmPath = URL.EOD_PATH + year + month + day + outFolder + URL.unresolvedStm;
 		if (Files.exists(Paths.get(unresolvedStmPath))) {
 			FileInputStream fis = null;
-
+			Set<String> unresolvedUTR = new HashSet<String>();
 			try {
 				fis = new FileInputStream(unresolvedStmPath);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
@@ -156,25 +176,30 @@ public class CRN_Fetch {
 					String lookingPstDate = pstDateFormat.format(date);
 					if (pstDate.contains(lookingPstDate)) {
 						if (drCr.equals("DR")) {
+							unresolvedUTR.add(utr);
 							String searchString = beneAccNo + "_" + amt;
 							if (payoutsMap.containsKey(searchString)) {
-								System.out.println(utr + " DR " + payoutsMap.get(searchString));
+								System.out.println(utr  + " \""+payoutsMap.get(searchString)+ "\","+ " DR");
 							} else {
 								if (payoutMode.equals("UPI")) {
 									if (payoutsMap.containsKey("null_" + amt)) {
-										System.out.println(utr + " DR " + payoutsMap.get("null_" + amt));
+										System.out.println(utr  + " \""+payoutsMap.get("null_" + amt)+ "\","+ " DR");
 									} else {
-										System.out.println(utr + " DR " + "UPI_No_payoutlog");
+										System.out.println(utr + " UPI_No_payoutlog"+ " DR");
 									}
 								} else {
-									System.out.println(utr + " DR " + "No_payoutlog");
+									System.out.println(utr + " No_payoutlog"+ " DR");
 								}
 							}
 						} else {
 							if (previousPayoutsMap.containsKey(utr)) {
-								System.out.println(utr + " CR " + previousPayoutsMap.get(utr));
+								System.out.println(utr + " \""+ previousPayoutsMap.get(utr)+ "\"," + " CR" );
 							} else {
-								System.out.println(utr + " CR " + "No_payoutlog");
+								if(unresolvedUTR.contains(utr)) {
+									System.out.println(utr + " Both_CRDR_onSameday"+ " CR");
+								}else {
+									System.out.println(utr + " No_payoutlog"+ " CR");
+								}
 							}
 						}
 					}
@@ -185,6 +210,8 @@ public class CRN_Fetch {
 				System.err.println(
 						"Error: at FileInputStream or readLine while Fetchin unresolvedStm file " + e.getMessage());
 			}
+		}else {
+			System.out.println("File doesnot exits: --> path: "+unresolvedStmPath);
 		}
 	}
 
