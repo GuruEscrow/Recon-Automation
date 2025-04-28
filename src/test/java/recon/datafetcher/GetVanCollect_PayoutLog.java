@@ -24,7 +24,7 @@ public class GetVanCollect_PayoutLog {
     @Test
 	public static void call() throws IOException {
 		//Dates
-		String startDate = "2024-12-26 00:00:00";
+		String startDate = "2025-04-21 00:00:00";
 		
 		//Formatting the start date and adding the plus 1 day for end date
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
